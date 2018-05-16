@@ -31,6 +31,11 @@ mkdir BUILD-FILES
 
 # Pull necessary files from sample diff repo
 git clone https://github.com/ucsb-gradescope-tools/sample-cpp-diff-autograder.git
+cd sample-cpp-diff-autograder
+git checkout factor-out-expected
+# In case the repo was already cloned
+git pull origin factor-out-expected
+cd ..
 cp sample-cpp-diff-autograder/MAKE-REFERENCE.sh .
 cp sample-cpp-diff-autograder/grade.sh .
 cp sample-cpp-diff-autograder/apt-get.sh .
@@ -39,3 +44,5 @@ rm -rf sample-cpp-diff-autograder/
 python3 $CONVERTER_DIR/create-diffs-sh.py $ZIP_FILE
 
 python3 $CONVERTER_DIR/move-assignment-files.py $ZIP_FILE
+
+python3 $CONVERTER_DIR/create-expected-sh.py $ZIP_FILE
