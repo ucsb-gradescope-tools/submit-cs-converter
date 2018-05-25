@@ -45,4 +45,7 @@ python3 $CONVERTER_DIR/create-diffs-sh.py $ZIP_FILE
 
 python3 $CONVERTER_DIR/move-assignment-files.py $ZIP_FILE
 
+mv EXECUTION-FILES/execution_files/* EXECUTION-FILES
+rm -rf EXECUTION-FILES/execution_files/
+
 python3 $CONVERTER_DIR/create-expected-sh.py $ZIP_FILE

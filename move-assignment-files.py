@@ -37,7 +37,7 @@ def main():
     build_files = {}
     for test_case, testable in list_testcases_with_testables(assignment):
         for f in testable["ExecutionFiles"]:
-            execution_files[f] = True
+            execution_files["execution_files/" + f] = True
         if ("Input" in test_case):
             execution_files[test_case["Input"]["File"]] = True
         for f in testable["BuildFiles"]:
