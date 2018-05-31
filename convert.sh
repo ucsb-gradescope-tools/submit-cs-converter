@@ -48,4 +48,7 @@ python3 $CONVERTER_DIR/move-assignment-files.py $ZIP_FILE
 mv EXECUTION-FILES/execution_files/* EXECUTION-FILES
 rm -rf EXECUTION-FILES/execution_files/
 
+mv BUILD-FILES/build_files/* BUILD-FILES
+rm -rf BUILD-FILES/build_files/
+
 python3 $CONVERTER_DIR/create-expected-sh.py $ZIP_FILE

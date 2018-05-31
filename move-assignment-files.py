@@ -41,7 +41,7 @@ def main():
         if ("Input" in test_case):
             execution_files[test_case["Input"]["File"]] = True
         for f in testable["BuildFiles"]:
-            execution_files[f] = True
+            build_files["build_files/" + f] = True
 
     copy_files_to_directory([*execution_files], "EXECUTION-FILES", assignment)
     copy_files_to_directory([*build_files], "BUILD-FILES", assignment)
