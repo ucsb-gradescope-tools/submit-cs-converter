@@ -4,7 +4,7 @@ import zipfile
 from zipfile import ZipFile
 import yaml
 import json
-from converter_utils import list_testcases_with_testables, open_zip_from_argv
+from converter_utils import common_pref, list_testcases_with_testables, open_zip_from_argv
 
 
 def main():
@@ -17,11 +17,11 @@ def main():
         print("Error: unable to open zip file")
         return
 
-    if (not "project.yml" in assignment.namelist()):
+    if (not (common_pref(assignment) + "project.yml") in assignment.namelist()):
         print("Error: project.yml missing")
         return
 
-    project_desc = yaml.load(assignment.read("project.yml"))
+    project_desc = yaml.load(assignment.read(common_pref(assignment) + "project.yml"))
 
     formatted = "EXPECTED_FILES=\"%s\"" % " ".join([*project_desc["ExpectedFiles"]])
     with open('expected.sh', 'w') as expected:

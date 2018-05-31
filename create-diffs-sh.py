@@ -18,6 +18,7 @@ def test_case_to_bash_format(test_case, testable):
         test_spec["visibility"] = "hidden"
 
     bash_cmd = test_case["Command"]
+    print(test_case)
 
     if ("Input" in test_case):
         bash_cmd += " < \"" + test_case["Input"]["File"] + "\""

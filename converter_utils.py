@@ -5,19 +5,26 @@ from zipfile import ZipFile
 import yaml
 import json
 
+
+def common_pref(assignment):
+    #print(assignment.namelist())
+    return assignment.namelist()[0].split("/")[0] + "/"
+
 def list_testable_names(assignment):
     testables = {}
     for name in assignment.namelist():
-        if name.startswith("testables/"):
-            testables[name.split("/")[1]] = True
+        if name.startswith(common_pref(assignment) + "testables/"):
+            #print(name)
+            testables[name.split("/")[2]] = True
 
+    #print([*testables])
     return [*testables]
 
 def list_testcases_with_testables(assignment):
     retval = []
 
     for testable in list_testable_names(assignment):
-        description_path = "testables/" + testable + "/" + testable + ".yml"
+        description_path = common_pref(assignment) + "testables/" + testable + "/" + testable + ".yml"
         if (not description_path in assignment.namelist()):
             print("Error: %s is missing" % description_path)
             continue

@@ -3,11 +3,11 @@ import os.path
 import zipfile
 from zipfile import ZipFile
 import yaml
-from converter_utils import list_testcases_with_testables, open_zip_from_argv
+from converter_utils import common_pref, list_testcases_with_testables, open_zip_from_argv
 
 def copy_files_to_directory(filenames, directory, assignment):
     for filename in filenames:
-        original_file = assignment.read(filename).decode()
+        original_file =  assignment.read(common_pref(assignment) + filename).decode()
         os.makedirs(os.path.dirname(directory + "/" + filename), exist_ok=True)
         with open(directory + "/" + filename, "w") as moved_file:
             moved_file.write(original_file)
@@ -28,8 +28,8 @@ def main():
         print("Error: unable to open zip file")
         return
             
-    if ("Makefile" in assignment.namelist()):
-        makefile = assignment.read("Makefile")
+    if (common_pref(assignment) + "Makefile" in assignment.namelist()):
+        makefile = assignment.read(common_pref(assignment) + "Makefile")
         with open("BUILD-FILES/Makefile", "w") as moved_makefile:
             moved_makefile.write(makefile.decode())
     
