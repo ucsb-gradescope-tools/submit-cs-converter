@@ -17,6 +17,6 @@ Tools for converting a downloaded submit.cs assignment to a Gradescope assignmen
 
 In the outdir, run `./MAKE-REFERENCE.sh`. This will create the reference output for each test and store it in the diffs.sh-reference directory.
 
-Run `./grade.sh REFERENCE-SOLUTION` to grade the reference solution against itself. The results will be in MAKE-STUDENT-OUTPUT.json. Verify that all tests received full points.
+Run `./grade.sh REFERENCE-SOLUTION` to grade the reference solution against itself. The results will be in MAKE-STUDENT-OUTPUT/results.json. Verify that all tests received full points.
 
 You can generate results for a solution in any directory by running `./grade.sh other_solution_directory`.
