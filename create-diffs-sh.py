@@ -26,6 +26,12 @@ def test_case_to_bash_format(test_case, testable):
     if ("Input" in test_case):
         bash_cmd += " < \"" + test_case["Input"]["File"] + "\""
 
+    #Some tests on Submit call the test binary as though
+    #it were in the path. (e.g. testprog instead of ./testprog)
+    #This allows those tests to run correctly
+    if (not test_case["Command"].startswith("./")):
+        bash_cmd = "env PATH=$PATH:$(pwd) " + bash_cmd
+
     return "#@test" + json.dumps(test_spec) + "\n" + bash_cmd
 
 def main():
