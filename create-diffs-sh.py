@@ -17,7 +17,7 @@ def test_case_to_bash_format(test_case, testable):
     if (testable["IsHidden"]):
         test_spec["visibility"] = "hidden"
 
-    if (test_case["HideExpected"]):
+    if (("HideExpected" in test_case) and test_case["HideExpected"]):
         test_spec["hide_expected"] = True
 
     bash_cmd = test_case["Command"]
